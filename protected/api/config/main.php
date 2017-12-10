@@ -44,7 +44,10 @@ $config = [
       'response' => [
 
             'class' => 'yii\web\Response',
-
+            'formatters' => [
+      				'application/json' => \yii\web\Response::FORMAT_JSON,
+      				'application/xml' => \yii\web\Response::FORMAT_XML,
+      		],
             'on beforeSend' => function ($event) {
 
                 $response = $event->sender;
@@ -168,7 +171,10 @@ $config = [
     ],
     
     'params' =>require(__DIR__ . '/params.php'),
-    'defaultRoute'=>'v1/default/index'
+    'defaultRoute'=>'v1/default/index',
+    'aliases'=>[
+    		'@app'=>dirname(dirname(__DIR__)).'/'
+    ]
 
 ];
 
